@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>US Policy Global Initiative</title>
+  <meta name="description" content="Student-led initiative teaching U.S. law and policy to students internationally through accessible lessons and case studies." />
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#111a2e;
+      --text:#e9eefc;
+      --muted:#b7c3e6;
+      --accent:#6aa6ff;
+      --accent2:#7cf0c6;
+      --border:rgba(255,255,255,.10);
+      --shadow: 0 18px 50px rgba(0,0,0,.45);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1000px 600px at 15% 10%, rgba(106,166,255,.20), transparent 60%),
+                  radial-gradient(900px 600px at 85% 10%, rgba(124,240,198,.14), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+    a{color:inherit}
+    .wrap{max-width:1050px;margin:0 auto;padding:22px}
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:14px;padding:14px 16px;border:1px solid var(--border);
+      background:rgba(17,26,46,.55);backdrop-filter: blur(10px);
+      border-radius:16px; box-shadow: var(--shadow);
+      position:sticky;top:14px;z-index:50;
+    }
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo{
+      width:38px;height:38px;border-radius:12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 12px 30px rgba(106,166,255,.25);
+    }
+    .brand b{letter-spacing:.2px}
+    .links{display:flex;gap:16px;flex-wrap:wrap}
+    .links a{
+      text-decoration:none;color:var(--muted);
+      padding:8px 10px;border-radius:10px;
+    }
+    .links a:hover{background:rgba(255,255,255,.06);color:var(--text)}
+    .hero{
+      margin-top:22px;
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(17,26,46,.72), rgba(17,26,46,.45));
+      border-radius:22px;
+      padding:42px 18px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;inset:-2px;
+      background: radial-gradient(600px 280px at 20% 20%, rgba(106,166,255,.18), transparent 60%),
+                  radial-gradient(520px 260px at 85% 30%, rgba(124,240,198,.14), transparent 60%);
+      pointer-events:none;
+    }
+    .hero-inner{position:relative;max-width:860px;margin:0 auto}
+    h1{font-size:clamp(30px, 4vw, 48px);margin:0 0 12px}
+    .tagline{color:var(--muted);font-size:clamp(15px, 1.6vw, 18px);margin:0 0 22px}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:12px 14px;border-radius:14px;border:1px solid var(--border);
+      text-decoration:none;font-weight:650;
+    }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(106,166,255,.95), rgba(124,240,198,.88));
+      color:#081021;border:none;
+    }
+    .btn.primary:hover{filter:brightness(1.05)}
+    .btn.ghost{
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+    }
+    .btn.ghost:hover{background:rgba(255,255,255,.10)}
+    .grid{
+      margin-top:18px;
+      display:grid;grid-template-columns:repeat(12,1fr);gap:14px;
+    }
+    .card{
+      grid-column: span 12;
+      border:1px solid var(--border);
+      background:rgba(17,26,46,.55);
+      border-radius:18px;padding:18px;
+      box-shadow: 0 12px 34px rgba(0,0,0,.25);
+    }
+    @media (min-width: 850px){
+      .card.half{grid-column: span 6;}
+      .card.third{grid-column: span 4;}
+    }
+    h2{margin:0 0 10px;font-size:20px}
+    p{margin:0 0 10px;color:var(--muted)}
+    ul{margin:10px 0 0 18px;color:var(--muted)}
+    li{margin:6px 0}
+    .pill{
+      display:inline-flex;gap:8px;flex-wrap:wrap;margin-top:10px
+    }
+    .pill span{
+      font-size:13px;color:var(--text);
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.05);
+      padding:7px 10px;border-radius:999px;
+    }
+    .footer{
+      margin:18px 0 6px;
+      color:rgba(233,238,252,.62);
+      text-align:center;font-size:13px;
+    }
+    .tiny{font-size:12px;color:rgba(233,238,252,.55)}
+    .section-title{margin:0 0 6px;color:var(--text)}
+    .split{
+      display:flex;gap:10px;flex-wrap:wrap;align-items:center
+    }
+    .note{
+      border-left:3px solid rgba(106,166,255,.8);
+      padding-left:10px;color:rgba(233,238,252,.72);
+      margin-top:10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="nav">
+      <a class="brand" href="#top">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <b>US Policy Global Initiative</b><br/>
+          <span class="tiny">Student-led civic education</span>
+        </div>
+      </a>
+      <div class="links" role="navigation" aria-label="Site">
+        <a href="#about">About</a>
+        <a href="#curriculum">Curriculum</a>
+        <a href="#partners">Partner</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+
+    <section id="top" class="hero">
+      <div class="hero-inner">
+        <h1>Teach U.S. law and policy—globally.</h1>
+        <p class="tagline">
+          US Policy Global Initiative is a student-led program offering free, nonpartisan lessons on how U.S. government works,
+          how laws are made, and how policy debates shape real life—built for international students.
+        </p>
+
+        <div class="cta">
+          <!-- Replace this link with your Google Form or signup link -->
+          <a class="btn primary" href="https://forms.gle/" target="_blank" rel="noopener">Sign up / Interest Form →</a>
+          <a class="btn ghost" href="#curriculum">See the curriculum</a>
+        </div>
+
+        <div class="pill" aria-label="Highlights">
+          <span>Nonpartisan</span>
+          <span>Case-study based</span>
+          <span>Interactive discussions</span>
+          <span>Live + recorded options</span>
+        </div>
+
+        <p class="note">
+          Schools, clubs, or teachers can request a short 4–8 session program tailored to student level and time zone.
+        </p>
+      </div>
+    </section>
+
+    <div class="grid">
+      <section id="about" class="card half">
+        <h2>What this is</h2>
+        <p>
+          A practical, accessible introduction to U.S. civics, law, and public policy—designed for students who didn’t grow up with the U.S. system.
+        </p>
+        <ul>
+          <li>Explain the structure: Constitution, federalism, separation of powers</li>
+          <li>Demystify lawmaking: Congress, the presidency, agencies, courts</li>
+          <li>Use real examples: landmark cases + modern policy debates</li>
+        </ul>
+      </section>
+
+      <section class="card half">
+        <h2>How we run sessions</h2>
+        <p>
+          Programs are typically 45–60 minutes, once per week, for 4–8 weeks. Each session includes a short lesson + a case study + discussion.
+        </p>
+        <ul>
+          <li>Live on Zoom / Google Meet</li>
+          <li>Optional recording + handouts</li>
+          <li>Discussion prompts for clubs/classrooms</li>
+        </ul>
+      </section>
+
+      <section id="curriculum" class="card">
+        <h2>Core curriculum (example 6-session series)</h2>
+        <div class="grid">
+          <div class="card third">
+            <h2 class="section-title">1) Foundations</h2>
+            <p>Constitution, rights, federal vs. state power.</p>
+          </div>
+          <div class="card third">
+            <h2 class="section-title">2) Congress</h2>
+            <p>Committees, parties, compromise, how a bill becomes law.</p>
+          </div>
+          <div class="card third">
+            <h2 class="section-title">3) The President</h2>
+            <p>Executive orders, agencies, limits on executive power.</p>
+          </div>
+          <div class="card third">
+            <h2 class="section-title">4) The Courts</h2>
+            <p>Judicial review, constitutional interpretation, key cases.</p>
+          </div>
+          <div class="card third">
+            <h2 class="section-title">5) Policy in Action</h2>
+            <p>How issues become policy: tradeoffs, evidence, incentives.</p>
+          </div>
+          <div class="card third">
+            <h2 class="section-title">6) Influence</h2>
+            <p>Media, lobbying, voting, activism, and civic engagement.</p>
+          </div>
+        </div>
+        <p class="note">Want a topic focus (AI, healthcare, immigration, climate, etc.)? We can build a themed version.</p>
+      </section>
+
+      <section id="partners" class="card half">
+        <h2>Partner with us</h2>
+        <p>
+          If you’re a school, teacher, or club leader, we can deliver a short program and provide discussion materials.
+        </p>
+        <ul>
+          <li>Free to host</li>
+          <li>Time-zone friendly scheduling</li>
+          <li>Custom level (intro → intermediate)</li>
+        </ul>
+      </section>
+
+      <section id="contact" class="card half">
+        <h2>Contact</h2>
+        <p>
+          Replace the placeholders below with your real contact details.
+        </p>
+        <ul>
+          <li>Email: <b>uspginitiative@gmail.com</b> (example)</li>
+          <li>Instagram: <b>@uspginitiative</b> (example)</li>
+          <li>Sign-up form: link it in the “Sign up” button at the top</li>
+        </ul>
+        <p class="note tiny">
+          Tip: Create a dedicated Gmail + Google Form first. That’s enough to start partnering with schools.
+        </p>
+      </section>
+    </div>
+
+    <div class="footer">
+      © <span id="year"></span> US Policy Global Initiative • Built by students for students
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
