@@ -90,17 +90,35 @@
     */
     .hero:after{
       content:"";
-      position:absolute;inset:0;
+      position:absolute;
+      inset:0;
       background-image:url("logonotext.png");
       background-repeat:no-repeat;
       background-position:center 55%;
-      background-size:auto 135%; /* <-- key: fills vertically to edges */
-      opacity:.18;
-      mix-blend-mode: soft-light; /* makes it feel embedded */
+      background-size:contain;        /* keeps entire logo visible */
+      opacity:.16;
+      mix-blend-mode: soft-light;
       pointer-events:none;
       z-index:1;
     }
-
+    .hero .vignette{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(
+      1200px 500px at 50% 55%,
+      rgba(255,255,255,.08),
+      transparent 65%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(11,18,32,.85) 0%,
+      rgba(11,18,32,.35) 50%,
+      rgba(11,18,32,.85) 100%
+    );
+  pointer-events:none;
+  z-index:2;
+}
     /* Add an internal vignette so edges feel natural and logo blends */
     .hero .vignette{
       position:absolute;inset:0;
