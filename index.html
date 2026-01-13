@@ -37,6 +37,7 @@
       position:sticky;top:14px;z-index:50;
     }
     .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+    /* top-left small logo stays as logo.png */
     .logo{
       width:38px;
       height:38px;
@@ -57,8 +58,8 @@
     .links a:hover{background:rgba(255,255,255,.06);color:var(--text)}
 
     /* =========================
-       HERO with logo as background "banner"
-       (NOT a separate giant image)
+       HERO (logo watermark centered + only inside this chunk)
+       Uses logonotext.png
        ========================= */
     .hero{
       margin-top:22px;
@@ -72,7 +73,7 @@
       isolation:isolate;
     }
 
-    /* keep your nice glow gradients */
+    /* nice glow gradients (kept) */
     .hero:before{
       content:"";
       position:absolute;inset:-2px;
@@ -82,30 +83,29 @@
       z-index:0;
     }
 
-    /* NEW: logo watermark/banner behind text */
+    /* NEW: centered, text-free watermark behind content */
     .hero:after{
       content:"";
       position:absolute;
       inset:0;
-      background-image: url("logo.png");
-      background-repeat: no-repeat;
-      background-position: center top;
-      background-size: min(980px, 96vw);
-      opacity: .14;                 /* tweak this: .10 to .18 is usually perfect */
-      filter: saturate(0.95) contrast(1.05);
-      transform: translateY(-6px);
+      background-image: url("logonotext.png");
+      background-repeat:no-repeat;
+      background-position:center center;      /* centered */
+      background-size:min(760px, 92%);        /* scale with screen */
+      opacity:.20;                            /* tweak if needed: .14 to .26 */
+      filter:saturate(1) contrast(1.05);
       pointer-events:none;
       z-index:0;
     }
 
-    /* optional: darken top area so the watermark feels "behind" */
+    /* subtle dark veil so text stays readable */
     .hero .shade{
       position:absolute;
       inset:0;
       background: linear-gradient(180deg,
-        rgba(11,18,32,.70) 0%,
-        rgba(11,18,32,.35) 45%,
-        rgba(11,18,32,.00) 100%);
+        rgba(11,18,32,.62) 0%,
+        rgba(11,18,32,.40) 40%,
+        rgba(11,18,32,.18) 100%);
       pointer-events:none;
       z-index:1;
     }
@@ -114,7 +114,7 @@
       position:relative;
       max-width:860px;
       margin:0 auto;
-      z-index:2; /* above watermark */
+      z-index:2;
     }
 
     h1{font-size:clamp(30px, 4vw, 48px);margin:0 0 12px}
@@ -151,12 +151,10 @@
       .card.half{grid-column: span 6;}
       .card.third{grid-column: span 4;}
     }
-
     h2{margin:0 0 10px;font-size:20px}
     p{margin:0 0 10px;color:var(--muted)}
     ul{margin:10px 0 0 18px;color:var(--muted)}
     li{margin:6px 0}
-
     .pill{
       display:inline-flex;gap:8px;flex-wrap:wrap;margin-top:10px
     }
@@ -201,6 +199,7 @@
 
     <section id="top" class="hero">
       <div class="shade" aria-hidden="true"></div>
+
       <div class="hero-inner">
         <h1>Teach U.S. law and policy—globally.</h1>
         <p class="tagline">
@@ -320,6 +319,3 @@
   </script>
 </body>
 </html>
-
-
-
