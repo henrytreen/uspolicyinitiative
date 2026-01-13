@@ -82,25 +82,24 @@
       z-index:0;
     }
 
+    .hero-watermark{
+  position:absolute;
+  left:50%;
+  top:55%;
+  transform: translate(-50%, -50%) scaleX(1.35); /* <-- stretches horizontally */
+  height:115%;
+  width:auto;
+  opacity:.16; /* keep your opacity */
+  mix-blend-mode: soft-light;
+  pointer-events:none;
+  z-index:1;
+}
     /*
       NEW watermark layer:
       - we size it by HEIGHT so it spans top-to-bottom (no “boxed image” look)
       - centered
       - blends using multiply-like behavior
     */
-    .hero:after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background-image:url("logonotext.png");
-      background-repeat:no-repeat;
-      background-position:center 55%;
-      background-size:contain;        /* keeps entire logo visible */
-      opacity:.16;
-      mix-blend-mode: soft-light;
-      pointer-events:none;
-      z-index:1;
-    }
     .hero .vignette{
   position:absolute;
   inset:0;
@@ -220,9 +219,9 @@
     </div>
 
     <section id="top" class="hero">
-      <div class="vignette" aria-hidden="true"></div>
-
-      <div class="hero-inner">
+  <img class="hero-watermark" src="logonotext.png" alt="" aria-hidden="true">
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="hero-inner">
         <h1>Teach U.S. law and policy—globally.</h1>
         <p class="tagline">
           US Policy Initiative is a student-led program offering free, nonpartisan lessons on how U.S. government works,
