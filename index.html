@@ -37,17 +37,12 @@
       position:sticky;top:14px;z-index:50;
     }
     .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
-    /* top-left small logo stays as logo.png */
     .logo{
-      width:38px;
-      height:38px;
-      border-radius:12px;
-      object-fit:contain;
+      width:38px;height:38px;border-radius:12px;object-fit:contain;
       box-shadow: 0 12px 30px rgba(106,166,255,.25);
       background: rgba(255,255,255,.06);
       border: 1px solid var(--border);
-      padding:6px;
-      display:block;
+      padding:6px;display:block;
     }
     .brand b{letter-spacing:.2px}
     .links{display:flex;gap:16px;flex-wrap:wrap}
@@ -58,63 +53,69 @@
     .links a:hover{background:rgba(255,255,255,.06);color:var(--text)}
 
     /* =========================
-       HERO (logo watermark centered + only inside this chunk)
-       Uses logonotext.png
+       HERO: make watermark feel "built in"
+       - no visible “image rectangle”
+       - fills to the hero borders
        ========================= */
     .hero{
       margin-top:22px;
       border:1px solid var(--border);
-      background: linear-gradient(180deg, rgba(17,26,46,.72), rgba(17,26,46,.45));
       border-radius:22px;
       padding:52px 18px;
       box-shadow: var(--shadow);
       overflow:hidden;
       position:relative;
       isolation:isolate;
+
+      /* Base card feel */
+      background: linear-gradient(180deg, rgba(17,26,46,.72), rgba(17,26,46,.45));
     }
 
-    /* nice glow gradients (kept) */
+    /* global glows (kept) */
     .hero:before{
       content:"";
       position:absolute;inset:-2px;
-      background: radial-gradient(600px 280px at 20% 20%, rgba(106,166,255,.18), transparent 60%),
-                  radial-gradient(520px 260px at 85% 30%, rgba(124,240,198,.14), transparent 60%);
+      background:
+        radial-gradient(600px 280px at 20% 20%, rgba(106,166,255,.18), transparent 60%),
+        radial-gradient(520px 260px at 85% 30%, rgba(124,240,198,.14), transparent 60%);
       pointer-events:none;
       z-index:0;
     }
 
-    /* NEW: centered, text-free watermark behind content */
+    /*
+      NEW watermark layer:
+      - we size it by HEIGHT so it spans top-to-bottom (no “boxed image” look)
+      - centered
+      - blends using multiply-like behavior
+    */
     .hero:after{
       content:"";
-      position:absolute;
-      inset:0;
-      background-image: url("logonotext.png");
+      position:absolute;inset:0;
+      background-image:url("logonotext.png");
       background-repeat:no-repeat;
-      background-position:center center;      /* centered */
-      background-size:min(760px, 92%);        /* scale with screen */
-      opacity:.20;                            /* tweak if needed: .14 to .26 */
-      filter:saturate(1) contrast(1.05);
-      pointer-events:none;
-      z-index:0;
-    }
-
-    /* subtle dark veil so text stays readable */
-    .hero .shade{
-      position:absolute;
-      inset:0;
-      background: linear-gradient(180deg,
-        rgba(11,18,32,.62) 0%,
-        rgba(11,18,32,.40) 40%,
-        rgba(11,18,32,.18) 100%);
+      background-position:center 55%;
+      background-size:auto 115%; /* <-- key: fills vertically to edges */
+      opacity:.18;
+      mix-blend-mode: soft-light; /* makes it feel embedded */
       pointer-events:none;
       z-index:1;
+    }
+
+    /* Add an internal vignette so edges feel natural and logo blends */
+    .hero .vignette{
+      position:absolute;inset:0;
+      background:
+        radial-gradient(1200px 520px at 50% 45%, rgba(255,255,255,.06), transparent 58%),
+        linear-gradient(180deg, rgba(11,18,32,.72) 0%, rgba(11,18,32,.42) 45%, rgba(11,18,32,.22) 100%);
+      pointer-events:none;
+      z-index:2;
     }
 
     .hero-inner{
       position:relative;
       max-width:860px;
       margin:0 auto;
-      z-index:2;
+      z-index:3;
     }
 
     h1{font-size:clamp(30px, 4vw, 48px);margin:0 0 12px}
@@ -155,9 +156,7 @@
     p{margin:0 0 10px;color:var(--muted)}
     ul{margin:10px 0 0 18px;color:var(--muted)}
     li{margin:6px 0}
-    .pill{
-      display:inline-flex;gap:8px;flex-wrap:wrap;margin-top:10px
-    }
+    .pill{display:inline-flex;gap:8px;flex-wrap:wrap;margin-top:10px}
     .pill span{
       font-size:13px;color:var(--text);
       border:1px solid var(--border);
@@ -175,6 +174,11 @@
       border-left:3px solid rgba(106,166,255,.8);
       padding-left:10px;color:rgba(233,238,252,.72);
       margin-top:10px;
+    }
+
+    /* Fallback if blend mode looks weird in a browser: */
+    @supports not (mix-blend-mode: soft-light){
+      .hero:after{mix-blend-mode: normal; opacity:.14;}
     }
   </style>
 </head>
@@ -198,7 +202,7 @@
     </div>
 
     <section id="top" class="hero">
-      <div class="shade" aria-hidden="true"></div>
+      <div class="vignette" aria-hidden="true"></div>
 
       <div class="hero-inner">
         <h1>Teach U.S. law and policy—globally.</h1>
