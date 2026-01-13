@@ -29,30 +29,6 @@
     a{color:inherit}
     .wrap{max-width:1050px;margin:0 auto;padding:22px}
 
-    /* =========================
-       NEW: Full-width logo banner
-       ========================= */
-    .logo-banner{
-      width:100%;
-      margin:0 0 14px;
-      border:1px solid var(--border);
-      background:rgba(17,26,46,.55);
-      backdrop-filter: blur(10px);
-      border-radius:18px;
-      box-shadow: var(--shadow);
-      padding:26px 16px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .logo-banner img{
-      width:100%;
-      max-width:980px; /* controls how wide the banner logo can get */
-      height:auto;
-      display:block;
-      object-fit:contain;
-    }
-
     .nav{
       display:flex;align-items:center;justify-content:space-between;
       gap:14px;padding:14px 16px;border:1px solid var(--border);
@@ -61,7 +37,6 @@
       position:sticky;top:14px;z-index:50;
     }
     .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
-    /* keeping your existing small icon logo in the nav (unchanged) */
     .logo{
       width:38px;
       height:38px;
@@ -80,24 +55,68 @@
       padding:8px 10px;border-radius:10px;
     }
     .links a:hover{background:rgba(255,255,255,.06);color:var(--text)}
+
+    /* =========================
+       HERO with logo as background "banner"
+       (NOT a separate giant image)
+       ========================= */
     .hero{
       margin-top:22px;
       border:1px solid var(--border);
       background: linear-gradient(180deg, rgba(17,26,46,.72), rgba(17,26,46,.45));
       border-radius:22px;
-      padding:42px 18px;
+      padding:52px 18px;
       box-shadow: var(--shadow);
       overflow:hidden;
       position:relative;
+      isolation:isolate;
     }
+
+    /* keep your nice glow gradients */
     .hero:before{
       content:"";
       position:absolute;inset:-2px;
       background: radial-gradient(600px 280px at 20% 20%, rgba(106,166,255,.18), transparent 60%),
                   radial-gradient(520px 260px at 85% 30%, rgba(124,240,198,.14), transparent 60%);
       pointer-events:none;
+      z-index:0;
     }
-    .hero-inner{position:relative;max-width:860px;margin:0 auto}
+
+    /* NEW: logo watermark/banner behind text */
+    .hero:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image: url("logo.png");
+      background-repeat: no-repeat;
+      background-position: center top;
+      background-size: min(980px, 96vw);
+      opacity: .14;                 /* tweak this: .10 to .18 is usually perfect */
+      filter: saturate(0.95) contrast(1.05);
+      transform: translateY(-6px);
+      pointer-events:none;
+      z-index:0;
+    }
+
+    /* optional: darken top area so the watermark feels "behind" */
+    .hero .shade{
+      position:absolute;
+      inset:0;
+      background: linear-gradient(180deg,
+        rgba(11,18,32,.70) 0%,
+        rgba(11,18,32,.35) 45%,
+        rgba(11,18,32,.00) 100%);
+      pointer-events:none;
+      z-index:1;
+    }
+
+    .hero-inner{
+      position:relative;
+      max-width:860px;
+      margin:0 auto;
+      z-index:2; /* above watermark */
+    }
+
     h1{font-size:clamp(30px, 4vw, 48px);margin:0 0 12px}
     .tagline{color:var(--muted);font-size:clamp(15px, 1.6vw, 18px);margin:0 0 22px}
     .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
@@ -116,6 +135,7 @@
       color:var(--text);
     }
     .btn.ghost:hover{background:rgba(255,255,255,.10)}
+
     .grid{
       margin-top:18px;
       display:grid;grid-template-columns:repeat(12,1fr);gap:14px;
@@ -131,10 +151,12 @@
       .card.half{grid-column: span 6;}
       .card.third{grid-column: span 4;}
     }
+
     h2{margin:0 0 10px;font-size:20px}
     p{margin:0 0 10px;color:var(--muted)}
     ul{margin:10px 0 0 18px;color:var(--muted)}
     li{margin:6px 0}
+
     .pill{
       display:inline-flex;gap:8px;flex-wrap:wrap;margin-top:10px
     }
@@ -151,9 +173,6 @@
     }
     .tiny{font-size:12px;color:rgba(233,238,252,.55)}
     .section-title{margin:0 0 6px;color:var(--text)}
-    .split{
-      display:flex;gap:10px;flex-wrap:wrap;align-items:center
-    }
     .note{
       border-left:3px solid rgba(106,166,255,.8);
       padding-left:10px;color:rgba(233,238,252,.72);
@@ -161,14 +180,9 @@
     }
   </style>
 </head>
+
 <body>
   <div class="wrap">
-
-    <!-- NEW: Banner logo at the very top -->
-    <header class="logo-banner">
-      <img src="logo.png" alt="US Policy Initiative banner logo" />
-    </header>
-
     <div class="nav">
       <a class="brand" href="#top">
         <img src="logo.png" alt="US Policy Initiative logo" class="logo">
@@ -186,6 +200,7 @@
     </div>
 
     <section id="top" class="hero">
+      <div class="shade" aria-hidden="true"></div>
       <div class="hero-inner">
         <h1>Teach U.S. law and policy—globally.</h1>
         <p class="tagline">
@@ -194,7 +209,6 @@
         </p>
 
         <div class="cta">
-          <!-- Replace this link with your Google Form or signup link -->
           <a class="btn primary" href="https://forms.gle/" target="_blank" rel="noopener">Sign up / Interest Form →</a>
           <a class="btn ghost" href="#curriculum">See the curriculum</a>
         </div>
@@ -306,5 +320,6 @@
   </script>
 </body>
 </html>
+
 
 
